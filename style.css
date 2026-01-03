@@ -1,70 +1,70 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #e8e6de;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e8e6de;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-      .container {
-        background-color: #546a7b;
-        border-radius: 20px;
-        padding: 30px;
+.container {
+  background-color: #546a7b;
+  border-radius: 20px;
+  padding: 30px;
 
-        width: 90%;
-        max-width: 500px;
-        color: #fff;
-      }
+  width: 90%;
+  max-width: 500px;
+  color: #fff;
+}
 
-      .logo {
-        position: absolute;
-        max-width: 300px;
-        top: 20px;
-        left: 20px;
-      }
+.logo {
+  position: absolute;
+  max-width: 300px;
+  top: 20px;
+  left: 20px;
+}
 
-      h1 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: Arial, sans-serif;
-        font-weight: bold;
-        color: #546a7b;
-      }
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #546a7b;
+}
 
-      label {
-        font-weight: bold;
-        display: block;
-        margin-top: 10px;
-        margin-bottom: 5px;
-      }
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
 
-      select,
-      input {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 10px;
-        margin-bottom: 15px;
-        background-color: #f9d28b;
-        color: #333;
-        font-size: 14px;
-      }
+select,
+input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background-color: #f9d28b;
+  color: #333;
+  font-size: 14px;
+}
 
-      .result {
-        text-align: center;
-        padding: 15px;
-        margin-top: 20px;
-        background-color: #212c36;
-        border-radius: 10px;
-        font-size: 16px;
-        font-weight:bolder;
-        color: wheat;
-      }
+.result {
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #212c36;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bolder;
+  color: wheat;
+}
