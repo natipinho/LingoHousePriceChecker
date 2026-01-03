@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css">
+  <title>Lingo House - Price Checker</title>
+
+</head>
+
+<body>
+  <img src="/img/logo_blue.png" alt="Lingohouse Logo" class="logo" />
+
+  <div class="container">
+    <label for="frequency">FREQUÊNCIA:</label>
+    <select id="frequency">
+      <option value="" disabled selected>Qual frequência desejada?</option>
+      <option value="1">1 aula/semana</option>
+      <option value="2">2 aula/semana</option>
+      <option value="3">3 aula/semana</option>
+      <option value="5">5 aula/semana</option>
+    </select>
+
+    <label for="people">MODALIDADE:</label>
+    <select id="people">
+      <option value="" disabled selected>Aulas particulares ou em grupos?</option>
+      <option value="1">1 pessoa</option>
+      <option value="2">2 pessoas</option>
+      <option value="3">3-5 pessoas</option>
+    </select>
+
+    <label for="commitment">CONTRATO:</label>
+    <select id="commitment">
+      <option value="" disabled selected>Quanto tempo de contrato?</option>
+      <option value="3">3 meses</option>
+      <option value="6">6 meses</option>
+      <option value="12">12 meses</option>
+    </select>
+
+    <label for="currency">MOEDA:</label>
+    <select id="currency">
+      <option value="" disabled selected>Com qual moeda quer pagar?</option>
+      <option value="EUR">EUR</option>
+      <option value="BRL">BRL</option>
+    </select>
+
+    <div class="result" id="result">O valor total aparecerá aqui.</div>
+  </div>
+
+  <script>
+    const priceData = {
+      dynamicPricing: {
+        pricePerSession: {
+          1: 22,  // preço por sessão para 1 pessoa
+          2: 20,  // preço por sessão para 2 pessoas (10% desconto)
+          3: 18   // preço por sessão para 3-5 pessoas (20% desconto)
+        },
+        discounts: {
+          3: 0,      // 3 meses = sem desconto
+          6: 0.15,   // 6 meses = 15% desconto
+          12: 0.25   // 12 meses = 25% desconto
+        }
+      },
+      currencyRates: {
+        EUR: 1,    // Base currency
+        BRL: 6.2   // Conversion rate to BRL
+      },
+    };
+
+    // Calcular e exibir preço
+    function updatePrice() {
+      const frequency = parseInt(document.getElementById("frequency").value);
+      const people = parseInt(document.getElementById("people").value);
+      const commitment = parseInt(document.getElementById("commitment").value);
+      const currency = document.getElementById("currency").value;
+
+      if (!frequency || !people || !commitment || !currency) {
+        document.getElementById("result").textContent =
+          "Por favor, selecione todas as opções.";
+        return;
+      }
+
+      const { pricePerSession, discounts } = priceData.dynamicPricing;
+      const { currencyRates } = priceData;
+
+      // Calcular número de semanas baseado no compromisso (meses)
+      const weeksInPeriod = commitment * 4; // aproximadamente 4 semanas por mês
+      
+      // Calcular preço base (sessões por semana × semanas × preço por sessão)
+      let basePrice = frequency * weeksInPeriod * pricePerSession[people];
+      
+      // Aplicar desconto baseado no período de compromisso
+      const discount = discounts[commitment] || 0;
+      let finalPrice = basePrice * (1 - discount);
+      
+      // Converter para moeda selecionada
+      finalPrice *= currencyRates[currency];
+
+      const currencySymbol = currency === "EUR" ? "€" : "R$";
+      document.getElementById("result").textContent = 
+        `Preço Total: ${currencySymbol}${finalPrice.toFixed(2)}`;
+    }
+
+    // Adicionar event listeners a todos os dropdowns
+    document
+      .getElementById("frequency")
+      .addEventListener("change", updatePrice);
+    document.getElementById("people").addEventListener("change", updatePrice);
+    document
+      .getElementById("commitment")
+      .addEventListener("change", updatePrice);
+    document
+      .getElementById("currency")
+      .addEventListener("change", updatePrice);
+  </script>
+</body>
+
+</html>
